@@ -2,17 +2,22 @@
 <idea-plugin>
     <id>com.github.godwinjk.filelabel</id>
     <name>file_label</name>
-    <vendor>godwinjk</vendor>
+    <vendor>Godwin</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.godwinjk.filelabel.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <editorTabTitleProvider
+                implementation="com.github.godwinjk.filelabel.component.FileTagAppendTabTileProvider"/>
+        <editorTabColorProvider implementation="com.github.godwinjk.filelabel.component.FileTagAppendTabColorProvider"/>
+        <applicationService serviceImplementation="com.github.godwinjk.filelabel.settings.FileTagSettings"/>
+        <applicationConfigurable parentId="tools" instance="com.github.godwinjk.filelabel.settings.FileTagConfigurable"
+                                 id="com.github.godwinjk.filelabel.settings.FileTagConfigurable"
+                                 displayName="File Tag"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.godwinjk.filelabel.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
 </idea-plugin>
